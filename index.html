@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <title>JavaScript CRUD Operation</title>
+  </head>
+  <body>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="alert alert-success text-center" >JavaScript CRUD Operation</h1>
+            </div>
+            <div class="col-sm-6">
+                <h4 class="alert alert-danger text-center">Insert Data</h4>
+                <div class="col-sm-12">
+                  <!-- onsubmit="event.preventDefault();onFormSubmit();" -->
+                    <form name="myForm" method="post">
+                      <div class="mb-3">
+                        <input type="hidden" class="form-control"  name="id" value="">
+                      </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <span class="validation-error"></span><br>
+                            <input type="text" class="form-control" name="name" placeholder="Enter Your Name">
+                          </div>
+                          <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <span class="validation-error"></span><br>
+                            <input type="email" class="form-control" name="email" placeholder="name@example.com">
+                          </div>
+                          <div class="mb-3">
+                            <label for="gender" class="form-label">Gender</label> 
+                            <span class="validation-error"></span><br>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="hobbies" class="form-label">Hobbies</label>
+                             <span class="validation-error"></span><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="hobbies" id="reading" value="Reading">
+                                <label class="form-check-label" for="reading">Reading</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="hobbies" id="traveling" value="Traveling">
+                                <label class="form-check-label" for="traveling">Traveling</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="hobbies" id="sports" value="Sports">
+                                <label class="form-check-label" for="sports">Sports</label>
+                              </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <span class="validation-error"></span><br>
+                            <select class="form-select" name="country" aria-label="Default select example">
+                                <option value="" selected>--Select--</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="state" class="form-label">State</label>
+                            <span class="validation-error"></span><br>
+                            <select class="form-select" name="state" aria-label="Default select example">
+                                <option value="" selected>--Select--</option>
+                              </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <span class="validation-error"></span><br>
+                            <select class="form-select" name="city" aria-label="Default select example">
+                                <option value="" selected>--Select--</option>
+                              </select>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <input type="submit" id="btnSubmit" name="btnSubmit" class="btn btn-info" value="Save">
+                            <input type="button" onclick="resetForm()" class="btn btn-danger" value="Clear">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h4 class="alert alert-danger text-center">Display Data</h4>
+                <div class="col-xs-2 text-center mb-4">
+                  Search: <input class="form-control" onkeyup="search_Record()"  type="search" name="search" >
+                  <div class="mb-3">
+                    <label for="state" class="form-label">Sorting</label>
+                    <span class="validation-error"></span><br>
+                    <select class="form-select" name="sort" aria-label="Default select example">
+                        <option value="" selected>--Select--</option>
+                        <option value="asc">Asc</option>
+                        <option value="desc">Desc</option>
+                      </select>
+                </div>
+                  <!-- <input type="button" name="btnSort" class="btn btn-info mt-2" value="Sort"> -->
+                </div>
+                <div class="col-sm-12">
+                    <table class="table table-dark table-striped" id="mylist">
+                        <thead>
+                            <tr>
+                                <td>Id</td>
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td>Gender</td>
+                                <td>Hobby</td>
+                                <td>Country</td>
+                                <td>State</td>
+                                <td>City</td>
+                                <td>Modify</td>
+                                <td>Delete</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+
+                        </tbody>
+                      </table>
+                </div>
+        </div>
+    </div>
+    <script src="jquery.js"></script>
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
